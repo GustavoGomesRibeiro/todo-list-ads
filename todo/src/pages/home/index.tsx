@@ -119,7 +119,7 @@ export default function Home() {
             </MainContent>
             <BuyMeACoffe>
                 <Label>Buy me a coffe</Label>
-                <a href="https://ko-fi.com/gustavoribeiro">
+                <a href="https://ko-fi.com/gustavoribeiro" target="_blank">
                     <Button>
                             <GiCoffeeCup size={30}/>
                     </Button>

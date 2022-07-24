@@ -5,7 +5,15 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 50px 0px
+    padding: 50px 0px;
+
+    @media (max-width: 425px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px 0px
+    }
 `;
 
 export const MainContent = styled.div`
@@ -14,6 +22,11 @@ export const MainContent = styled.div`
     height: auto;
     width: auto;
     border-radius: 10px;
+
+    @media (max-width: 425px) {
+        width: 330px;
+        height: auto;
+    }
 `;
 
 export const ContentTitle = styled.div`
@@ -38,6 +51,11 @@ export const ContentInput = styled.div`
     align-items: center;
     justify-content: center;
     padding: 10px;
+
+    @media (max-width: 425px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const ContentLabel = styled.div`
@@ -70,11 +88,22 @@ export const TodoList = styled.div`
     background: #242323;
     margin: 10px;
     border: 1px solid #fff;
+
+    @media (max-width: 425px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const TaskDescription = styled.div``;
 
-export const Icon = styled.div``;
+export const Icon = styled.div`
+
+@media (max-width: 425px) {
+    display: flex;
+    justify-content: center;
+}
+`;
 
 export const Text = styled.p`
     word-break: break-all;

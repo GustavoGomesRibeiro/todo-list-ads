@@ -11,4 +11,9 @@ export const PlaceHolder = styled.div`
     background: #ccc;
     width: 728px;
     height: 90px;
+
+    @media (max-width: 425px) {
+        width: 320px;
+        height: 50px;
+    }
 `;
