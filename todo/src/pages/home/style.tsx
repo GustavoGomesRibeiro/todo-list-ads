@@ -69,6 +69,7 @@ export const Label = styled.label`
     color: #fff;
     font-size: 18px;
     font-weight: bold;
+    word-break: break-all;
 `;
 
 export const LabelTask = styled.label`

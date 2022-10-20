@@ -30,9 +30,7 @@ const _transformerObjectToArray = JSON.parse(_getItem);
 export default function Home() {
     const [Name, setName] = useState<string>("");
     const [Description, setDescription] = useState<string>("");
-    const [completed, setCompleted] = useState<boolean>(false);
     const [todoList, setTodoList] = useState<ITodoList[]>(_transformerObjectToArray);
-    const [testes, setTeste] = useState<string[]>([]);
 
     useEffect(() => {
         localStorage.setItem('todo-list', JSON.stringify(todoList))
@@ -117,14 +115,14 @@ export default function Home() {
                     )}
                 </ContentTodos>
             </MainContent>
-            <BuyMeACoffe>
+            {/* <BuyMeACoffe>
                 <Label>Buy me a coffe</Label>
                 <a href="https://ko-fi.com/gustavoribeiro" target="_blank">
                     <Button>
                             <GiCoffeeCup size={30}/>
                     </Button>
                 </a>
-            </BuyMeACoffe>
+            </BuyMeACoffe> */}
         </Container>
     )
 }
