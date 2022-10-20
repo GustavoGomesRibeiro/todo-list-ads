@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { FcCheckmark, FcCancel } from "react-icons/fc";
 import { GiCoffeeCup } from "react-icons/gi";
 import ITodoList from '../../interfaces/Home/index';
@@ -28,6 +28,7 @@ const _getItem = localStorage.getItem('todo-list') || "[]"
 const _transformerObjectToArray = JSON.parse(_getItem);
 
 export default function Home() {
+    const [taskId, setTaskId] = useState<string>("");
     const [Name, setName] = useState<string>("");
     const [Description, setDescription] = useState<string>("");
     const [todoList, setTodoList] = useState<ITodoList[]>(_transformerObjectToArray);
@@ -44,8 +45,32 @@ export default function Home() {
     }
 
     const deleteTask = (id: string) => {
-        const filter = todoList.filter(task => task.id !== id)
-        setTodoList(filter)
+        const filter = todoList.filter(task => task.id !== id);
+        setTodoList(filter);
+    }
+
+    const editTask = (id: string | null) => {
+        
+        const foundTask: ITodoList = todoList.filter(task => task.id === id || taskId)[0];
+        
+        if(taskId) {
+            const remainderTasks: ITodoList[] = todoList.filter(task => task.id !== taskId);
+            setTodoList([...remainderTasks, {
+                id: taskId,
+                name: Name,
+                description: Description,
+                completed: foundTask.completed
+            }]);
+
+            setTaskId("");
+            setName("");
+            setDescription("");
+        } else {
+            setTaskId(foundTask.id);
+            setName(foundTask.name);
+            setDescription(foundTask.description);
+        }
+
     }
 
     const completedTask = (id:string) => {
@@ -74,7 +99,7 @@ export default function Home() {
                         <Label>Descrição</Label>
                         <Input onChange={e => setDescription(e.target.value)} value={Description}/>
                     </ContentLabel>
-                    <Button onClick={createNewTodoList}> Criar </Button>
+                    <Button onClick={() => taskId ? editTask(null) : createNewTodoList() }> {taskId ? "Editar" : "Criar"} </Button>
                 </ContentInput>
 
                 <ContentTodos>
@@ -86,6 +111,10 @@ export default function Home() {
                             </TaskDescription>
 
                             <Icon>
+                                <Button onClick={() => editTask(_task.id)}>
+                                    <MdEdit color="#fff" size={24}/>
+                                </Button>
+
                                 <Button onClick={() => deleteTask(_task.id)}>
                                     <MdDelete color="#fff" size={24}/>
                                 </Button>
